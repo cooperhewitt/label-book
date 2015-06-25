@@ -1,4 +1,4 @@
-## Label Book for Provocations
+# Label Book for Exhibitions
 
 ––
 
