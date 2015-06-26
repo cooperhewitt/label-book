@@ -1,5 +1,19 @@
 # Label Book for Exhibitions
 
-––
+___
 
-_list template here_
+Current Template:
+
++ img
+
++ title
++ date
+
++ designer
++ manufacturer
++ medium
++ creditline
+
++ tags
+
++ label_text

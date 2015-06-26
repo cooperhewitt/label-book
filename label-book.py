@@ -7,6 +7,7 @@ import os
 import urllib
 import secrets
 
+
 if __name__ == "__main__":
 	
 	api = cooperhewitt.api.client.OAuth2(secrets.ACCESS_TOKEN)
@@ -15,91 +16,138 @@ if __name__ == "__main__":
 
 	rsp = api.execute_method('cooperhewitt.exhibitions.getObjects', args)
 
-	target = open('book.md', 'w')
+	target = open('book.html', 'w')
+
+	target.write("<html>"+"<br>") 
+	target.write("<head>"+"<br>")
+	target.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"theme.css\">")  
+	target.write("</head>"+"<br>") 
+	target.write("<body>"+"<br>") 
 
 	for item in rsp['objects']:
+		target.write("<div class=\"object\">") 
 
+# 		store object ID in 'obj_id'		
 		obj_id = item['id']
-		
+
+# 		find images[]		
 		images = item['images']
+
+# 		if statement to find index value of [0] in images[] and exclude images[] that are null		
+		target.write("<div class=\"section\">")
 		if images:
-			print obj_id
-			print images[0]
-			
 			img = images[0]['n']['url']	
-			target.write("![Object ID: "+obj_id+"]("+img+")")
-		target.write("\n")			
-														
-		# First Section-includes: Title, Date
-		title =	item['title'].encode('utf-8')
-		target.write("# " + title)
-		target.write("\n")
+			target.write("<img src=\"" + img + "\">")
+		else: 
+			target.write("<h1>NO IMAGE</h1>")
+		target.write("</div>")
+			
+# 		sect. I														
+		target.write("<div class=\"section\">")
 		
+# 		sect. I - title
+		if item['title_raw']:
+			title_raw =	item['title_raw'].encode('utf-8')
+			print obj_id
+			print title_raw
+			target.write("<h1>" + title_raw + "</h1>")
+		else:	
+			title =	item['title'].encode('utf-8')
+			print obj_id
+			print title	
+			target.write("<h1>" + title + "</h1>")
+
+# 		sect. I - date		
 		if (item['date']):
 			date = item['date'].encode('utf-8')
-			target.write("## " + date)
-		target.write("\n")
+			target.write("<h2>" + date + "</h2>")
 
-		target.write("___")	
-		target.write("\n")
+		target.write("</div>")
+# 		end sect. I														
+	
+	
+	
+	
+			
 
-		# Second Section-includes: Designer, Manufacturer, Material, Donor Info.
+# 		sect. II
+		target.write("<div class=\"section\">")
+		target.write("<ul class=\"info\">")													
+
+# 		sect. II - particpants[] role_name: designer
 		if (item['participants']):
 			for item2 in item['participants']:
 				role_name = item2['role_name'].encode('utf-8')
 				if role_name == 'Designer':
-
-					target.write("+ Designed by " + item2['person_name'].encode('utf-8'))
-					target.write("\n")
-
+					target.write("<li>Designed by " + item2['person_name'].encode('utf-8') + "</li>")
+					
+# 		sect. II - particpants[] role_name: manufacturer
 		if (item['participants']):
 			for item2 in item['participants']:
 				role_name = item2['role_name'].encode('utf-8')
 				if role_name == 'Manufacturer':
+					target.write("<li>Manufactured by " + item2['person_name'].encode('utf-8') + "</li>")				
 
-					target.write("+ Manufactured by " + item2['person_name'].encode('utf-8'))
-					target.write("\n")
-
+# 		sect. II - medium
 		if (item['medium']):
 			medium = item['medium'].encode('utf-8')
-			target.write("+ " + medium)
-			target.write("\n")
+			target.write("<li>" + medium + "</li>")
 
+# 		sect. II - creditline
 		if (item['creditline']):
 			creditline = item['creditline'].encode('utf-8')
-			target.write("+ " + creditline)
-		target.write("\n")		
+			target.write("<li>" + creditline + "</li>")
+								
+		target.write("</ul>")
+		target.write("</div>")
+# 		end sect. II
+
+
+
+
+
+				
+# 		sect. III
+															
+# 		sect. III - tags
 		
-		target.write("___")	
-		target.write("\n")
-		
-		# retrieving tags through another api	
-		obj_id = item['id']
-		
+# 		retrieving tags through another api	w/ obj id		
 		args = {'object_id': obj_id, 'page':'1', 'per_page':'100'}
 		rsp2 = api.execute_method('cooperhewitt.objects.tags.getTags', args)
-		# Third Section-includes: List of tags, Label Text
-		
-		first = True
-		for tag in rsp2['tags']:
-			tag_name = tag['name']
-			if tag_name != None:
 				
-				if first:
-					first = False
-					target.write("+ ")
-					target.write(tag_name)
-				else:
-					target.write(", " + tag_name)
-		target.write("\n")
-
-		if (item['label_text']):
-			label_text = item['label_text'].encode('utf-8')
-			target.write("+ " + label_text)
-			target.write("\n")
+		tags = rsp2['tags']
 		
-		target.write("___")	
-		target.write("\n")
-		target.write("\n")
+		if tags:
+			target.write("<div class=\"section\">")
+			target.write("<ul class=\"tags\">")													
+			
+			for tag in rsp2['tags']:
+				tag_name = tag['name']
+				
+				if tag_name != None:
+					target.write("<li>" + tag_name + "</li>")
 	
+			target.write("</ul>")
+			target.write("</div>")
+				
+# 		end sect. III
+
+
+
+
+
+# 		sect. IV
+													
+# 		sect. IV - label text
+		if (item['label_text']) != None:
+			target.write("<div class=\"section\">")
+			target.write("<p>")
+			
+			label_text = item['label_text'].encode('utf-8')
+			target.write(label_text + "</p>")
+
+			target.write("</div>")
+# 		end sect. IV
+	
+		target.write("</div>") 	
 	target.close()
