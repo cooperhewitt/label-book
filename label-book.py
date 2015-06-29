@@ -18,11 +18,29 @@ if __name__ == "__main__":
 
 	target = open('book.html', 'w')
 
-	target.write("<html>"+"<br>") 
-	target.write("<head>"+"<br>")
+	target.write("<html>") 
+	target.write("<head>")
 	target.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"theme.css\">")  
-	target.write("</head>"+"<br>") 
-	target.write("<body>"+"<br>") 
+	target.write("</head>") 
+	target.write("<body>")
+
+
+# 	INTRO PAGE		
+# 	retrieving exhibition info through another api	w/ exhibition id		
+	args = {'exhibition_id': '68744915'}
+	rsp3 = api.execute_method('cooperhewitt.exhibitions.getInfo', args)
+	
+	exhibition = rsp3['exhibition']
+	extitle = exhibition['title'].encode('utf-8')
+	extext = exhibition['text'].encode('utf-8')
+	
+	target.write("<div class=\"object intro\">") 
+	target.write("<h1>" + extitle + "</h1>")
+	target.write("<p>" + extext + "</p>")			
+	target.write("</div>")
+				
+# 	end INTRO PAGE
+
 
 	for item in rsp['objects']:
 		target.write("<div class=\"object\">") 
@@ -34,27 +52,29 @@ if __name__ == "__main__":
 		images = item['images']
 
 # 		if statement to find index value of [0] in images[] and exclude images[] that are null		
-		target.write("<div class=\"section\">")
+		target.write("<div class=\"col-1-3\">")
 		if images:
 			img = images[0]['n']['url']	
 			target.write("<img src=\"" + img + "\">")
 		else: 
 			target.write("<h1>NO IMAGE</h1>")
 		target.write("</div>")
-			
+
+
+		target.write("<div class=\"col-2-3\">")
 # 		sect. I														
 		target.write("<div class=\"section\">")
 		
 # 		sect. I - title
 		if item['title_raw']:
 			title_raw =	item['title_raw'].encode('utf-8')
-			print obj_id
-			print title_raw
+# 			print obj_id
+# 			print title_raw
 			target.write("<h1>" + title_raw + "</h1>")
 		else:	
 			title =	item['title'].encode('utf-8')
-			print obj_id
-			print title	
+# 			print obj_id
+# 			print title	
 			target.write("<h1>" + title + "</h1>")
 
 # 		sect. I - date		
@@ -104,13 +124,9 @@ if __name__ == "__main__":
 
 
 
-
-
-				
 # 		sect. III
 															
-# 		sect. III - tags
-		
+# 		sect. III - tags		
 # 		retrieving tags through another api	w/ obj id		
 		args = {'object_id': obj_id, 'page':'1', 'per_page':'100'}
 		rsp2 = api.execute_method('cooperhewitt.objects.tags.getTags', args)
@@ -134,8 +150,6 @@ if __name__ == "__main__":
 
 
 
-
-
 # 		sect. IV
 													
 # 		sect. IV - label text
@@ -148,6 +162,7 @@ if __name__ == "__main__":
 
 			target.write("</div>")
 # 		end sect. IV
-	
-		target.write("</div>") 	
+
+		target.write("</div>") #col-2-3 div
+		target.write("</div>") #object div 	
 	target.close()

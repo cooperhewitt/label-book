@@ -36,103 +36,199 @@ footer, header, hgroup, menu, nav, section {
   box-sizing: border-box;
 }
 
+/* 	Base font-size is now 10px. Now, 1.0rem = 10px.  */
+html {
+    font-size: 62.5%
+}
+
 body {
-	width: 400px;
-	margin: 0px auto;
-	font-size:15px;
-/* 	line-height: 16px; */
+	font-size: 1.6rem;
+    line-height: 1.625; /* unit-less line-height */
 }
 
 ol, ul {
 	list-style: none;
 }
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-}
-
-ins {
-	text-decoration: none;
-}
-del {
-	text-decoration: line-through;
-}
-
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
 
 .object {
-	page-break-after: always;
+	width:80%;
+	margin: 0 auto 2rem auto;
+}
+
+/* clearfix for object */
+.object:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.object:first-child{
+	margin-top: 2rem;
 }
 
 img {
-	display:block;
-	margin: 0px auto;
+	width:100%;
 	border-top: none;
 }
 
 .section {
 	border-top: 1px solid #000;
-	padding: 10px 0px;
+	padding: 1rem 0;
+}
+/* clearfix for section */
+.section:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* grid */
+[class*='col-'] {
+  float: left;
+  padding-right: 2rem;
+}
+
+[class*='col-']:last-of-type {
+  padding-right: 0;
+}
+
+/* grid widths*/
+.col-2-3 {
+  width: 66.66%;
+}
+.col-1-3 {
+  width: 33.33%;
+}
+
+
+.intro{
+	margin-bottom: 2rem;
+}
+
+.intro h1{
+	font-family: ch-heavy;
+	font-size: 3.6rem;
+	text-transform: uppercase;
+	margin-bottom: 2rem;
+}
+
+.intro p{
+	display:none;
 }
 
 h1 {
 	font-family: ch-semibold;
-	font-size: 1.5em;
-	line-height: 1.2em;
 }
 
 h2 {
 	font-family: ch-semibold;
-	font-size: 1em;
-	line-height: 1.5em;
+}
+
+p {
+	font-family: ch-book;	
 }
 
 ul.info li{
 	font-family: ch-book;
-	font-size: 1em;
-	line-height: 1.5em;	
 }
 
 ul.tags li {
-	display: inline-block;
-	margin-right:5px;
 	font-family: ch-bookitalic;
-	font-size: 1em;
-	line-height: 1.5em;	
+	display: inline-block;
+	margin-right:.5rem;
 }
 
 ul.tags li:last-child {
-	margin-right:0px;	
+	margin-right:0;	
 }
 ul.tags li:after { content: ", "; }
 ul.tags li:last-child:after { content: ""; }
 
-p {
-	font-family: ch-medium;
-	font-size: 1em;
-	line-height: 1.5em;		
+@font-face {
+  font-family: 'ch-heavy';
+  src: url('font/CooperHewitt-Heavy.woff') format('woff');
 }
 
 @font-face {
-    font-family: ch-semibold;
-    src: url("font/CooperHewitt-Semibold.otf");
+  font-family: 'ch-semibold';
+  src: url('font/CooperHewitt-Semibold.woff') format('woff');
 }
+
 @font-face {
-    font-family: ch-medium;
-    src: url("font/CooperHewitt-Medium.otf");
+  font-family: 'ch-medium';
+  src: url('font/CooperHewitt-Medium.woff') format('woff');
 }
+
 @font-face {
-    font-family: ch-book;
-    src: url("font/CooperHewitt-Book.otf");
+  font-family: 'ch-book';
+  src: url('font/CooperHewitt-Book.woff') format('woff');
 }
+
 @font-face {
-    font-family: ch-bookitalic;
-    src: url("font/CooperHewitt-BookItalic.otf");
+  font-family: 'ch-bookitalic';
+  src: url('font/CooperHewitt-BookItalic.woff') format('woff');
 }
+
+
+
+@media print {
+	.intro p {
+		display: block;
+	}
+		
+	.object {
+		width:100%;
+		margin: 0px auto;
+		page-break-after: always;
+	}
+}
+
+
+/*
+ :::  Media Query
+-------------------------------------------------- */
+
+/*IPAD media query-------------------------------------------------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px)  { 
+}
+
+/*IPHONE media query-------------------------------------------------- */
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 568px) {
+}
+
+/*1200px wide media query-------------------------------------------------- */
+@media (max-width: 1200px) {
+}
+
+/*900px wide media query-------------------------------------------------- */
+@media (max-width: 900px) {
+}
+
+/*600px wide media query-------------------------------------------------- */
+@media only screen and (max-width: 600px) {
+
+.intro{
+	margin-bottom: 0;
+}
+	
+.intro h1{
+	font-family: ch-semibold;
+	font-size: 1.6rem;
+	text-transform: uppercase;
+	margin-bottom: 0;
+}
+
+	
+
+[class*='col-'] {
+	width:100%;
+	float: none;
+	padding-right: none;
+}
+
+}
+
