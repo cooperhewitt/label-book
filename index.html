@@ -1,0 +1,79 @@
+<html>
+<head>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="theme.css">
+</head>
+<body>
+
+<script type="text/javascript">
+$(document).ready( function() {
+
+var token = "f938b82a99bfa65ad950b7bc8a37f518";
+var ch="https://api.collection.cooperhewitt.org/rest/?method=cooperhewitt.exhibitions.getObjects&access_token=" + token + "&exhibition_id=68744915&page=1&per_page=100";
+
+	$.getJSON(ch, function (json) {
+		var item = json.objects;
+		console.log(item.length);
+		 
+// 		For loop iterates through the variable 'list', which contain all the objects 
+		for(var i=0; i<item.length; i++){
+
+
+// 			IMAGES
+			var images = item[i].images;
+			if (images != false){
+				imgURL = images[0].n.url;
+// 				console.log(imgURL);
+			} else {
+// 				console.log("NO IMAGE");
+			}			
+
+// 			TITLE
+			if (item[i].title_raw){
+				title_raw = item[i].title_raw;
+// 				console.log("This is title_raw: " + title_raw);
+			} else {
+				title = item[i].title_raw;
+// 				console.log("NO TITLE_RAW. This is title: " + title_raw);
+			}
+
+// 			DATE
+			if (item[i].date){
+				date = item[i].date;
+// 				console.log("DATE: " + date);	
+			}
+		
+// 			PARTICIPANTS
+			if (item[i].participants){
+				part = item[i].participants;
+				
+				for(var x=0; x<part.length; x++){
+					role_name = part[x].role_name;
+					if (role_name = "Designer"){
+// 						console.log("There is a designer: " + part[x].person_name);
+					}
+					if (role_name = "Manufacturer"){
+// 						console.log("There is a manufacturer: " + part[x].person_name);
+					}
+				}
+			}
+
+// 			MEDIUM
+			if (item[i].medium){
+				medium = item[i].medium;
+// 				console.log("MEDIUM: " + medium);	
+			}
+		
+// 			CREDITLINE
+			if (item[i].creditline){
+				creditline = item[i].creditline;
+// 				console.log("Creditline: " + creditline);	
+			}					
+		} // for loop to go through objects
+	});// .getjson
+	
+});// document.ready
+</script>
+
+</body>
+</html>

@@ -13,7 +13,6 @@ if __name__ == "__main__":
 	api = cooperhewitt.api.client.OAuth2(secrets.ACCESS_TOKEN)
 
 	args = {'exhibition_id': '68744915', 'has_images': '1', 'page':'1', 'per_page':'100'}
-
 	rsp = api.execute_method('cooperhewitt.exhibitions.getObjects', args)
 
 	target = open('book.html', 'w')
@@ -42,11 +41,14 @@ if __name__ == "__main__":
 # 	end INTRO PAGE
 
 
+
 	for item in rsp['objects']:
 		target.write("<div class=\"object\">") 
 
 # 		store object ID in 'obj_id'		
 		obj_id = item['id']
+
+
 
 # 		find images[]		
 		images = item['images']
