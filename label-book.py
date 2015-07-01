@@ -5,12 +5,12 @@ import json
 import cooperhewitt.api.client
 import os
 import urllib
-import secrets
 
+ACCESS_TOKEN = os.environ['CH_API_KEY']
 
 if __name__ == "__main__":
 	
-	api = cooperhewitt.api.client.OAuth2(secrets.ACCESS_TOKEN)
+	api = cooperhewitt.api.client.OAuth2(ACCESS_TOKEN)
 
 	args = {'exhibition_id': '68744915', 'has_images': '1', 'page':'1', 'per_page':'100'}
 	rsp = api.execute_method('cooperhewitt.exhibitions.getObjects', args)

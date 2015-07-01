@@ -2,5 +2,8 @@
 *.pyc
 *~
 book.md
+book.html
 secrets.js
-secrets.py
+build
+dist
+*.egg-info
