@@ -10,7 +10,9 @@
 <script type="text/javascript">
 $(document).ready( function() {
 
-var ch="https://api.collection.cooperhewitt.org/rest/?method=cooperhewitt.exhibitions.getObjects&access_token=" + token + "&exhibition_id=68744915&page=1&per_page=100";
+for(var call=1; call<3; call++){
+
+var ch="https://api.collection.cooperhewitt.org/rest/?method=cooperhewitt.exhibitions.getObjects&access_token=" + token + "&exhibition_id=68744915&page=" + call +"&per_page=101";
 
 	$.getJSON(ch, function (json) {
 		var item = json.objects;
@@ -155,6 +157,7 @@ var ch="https://api.collection.cooperhewitt.org/rest/?method=cooperhewitt.exhibi
 			
 		} // for loop to go through objects
 	});// .getjson
+}
 });// document.ready
 </script>
 
