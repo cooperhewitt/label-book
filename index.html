@@ -23,7 +23,9 @@ var ch="https://api.collection.cooperhewitt.org/rest/?method=cooperhewitt.exhibi
 			var images = item[i].images;
 			if (images != false){
 				var imgURL = images[0].n.url;
+				console.log(imgURL);
 			} else {
+				var imgURL = "http://uh8yh30l48rpize52xh0q1o6i.wpengine.netdna-cdn.com/wp-content/themes/cooperhewitt/assets/images/placeholder-small.png";
 			}			
 			
 // 			TITLE
@@ -32,9 +34,6 @@ var ch="https://api.collection.cooperhewitt.org/rest/?method=cooperhewitt.exhibi
 			} else {
 				var title = item[i].title;
 			}
-
-
-
 
 // 			DATE
 			if (item[i].date){
@@ -72,7 +71,11 @@ var ch="https://api.collection.cooperhewitt.org/rest/?method=cooperhewitt.exhibi
 				var label = item[i].label_text;
 				}
 
+
+
+
 // 			TAGS
+/*
 			objId = item[i].id;	
 			var ch_tags="https://api.collection.cooperhewitt.org/rest/?method=cooperhewitt.objects.tags.getTags&access_token=" + token + "&object_id=" + objId + "&page=1&per_page=100";
 			$.getJSON(ch_tags, function (json) {
@@ -82,18 +85,29 @@ var ch="https://api.collection.cooperhewitt.org/rest/?method=cooperhewitt.exhibi
 						var tag_name = item_tags[tt].name;
 					}
 			});// .getjson
+*/
+
+
 			
 			
 		
 		    var div = document.createElement("div");
-		    	div.className = "object";   
+		    	div.className = "object";
+		    	
+		    var div_1_3 = document.createElement("div");
+		    	div_1_3.className = "col-1-3";
+
+		    var div_2_3 = document.createElement("div");
+		    	div_2_3.className = "col-2-3";
+					    	   
 		    var h1 = document.createElement("h1");
 		    var h2 = document.createElement("h2");
 		    var p = document.createElement("p");
 		    var ul = document.createElement('ul');
 		    	ul.className = "info";
-			
-				
+			var img = document.createElement('img');
+				img.src = imgURL;
+
 			h1.innerHTML = h1.innerHTML + title;
 			h2.innerHTML = h2.innerHTML + date;
 			p.innerHTML = p.innerHTML + label;
@@ -106,16 +120,37 @@ var ch="https://api.collection.cooperhewitt.org/rest/?method=cooperhewitt.exhibi
 			    li.innerHTML=li.innerHTML + infoArray[w];
 			}
 			
-			div.appendChild(h1);
-			div.appendChild(h2);
-			div.appendChild(ul);
-			div.appendChild(p);
-	    
+			var section_1 = document.createElement("div");
+				section_1.className = "section";
+			
+			var section_2 = document.createElement("div");
+				section_2.className = "section";
+			
+			var section_3 = document.createElement("div");
+				section_3.className = "section";			
+
+			var section_4 = document.createElement("div");
+				section_4.className = "section";
+			
+			section_1.appendChild(h1);
+			section_1.appendChild(h2);
+			section_2.appendChild(ul);
+// 			section_3.appendChild(ul); FOR TAGS
+			section_4.appendChild(p);
+						
+			div_1_3.appendChild(img);
+			div_2_3.appendChild(section_1);
+			div_2_3.appendChild(section_2);
+// 			div_2_3.appendChild(section_3); FOR TAGS
+			div_2_3.appendChild(section_4);
+
+			div.appendChild(div_1_3);
+		    div.appendChild(div_2_3);
+    
 		    document.getElementById("main").appendChild(div);
 			
 		} // for loop to go through objects
 	});// .getjson
-	console.log(date);
 });// document.ready
 </script>
 
