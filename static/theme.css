@@ -44,6 +44,16 @@ html {
 body {
 	font-size: 1.6rem;
     line-height: 1.625; /* unit-less line-height */
+    color:#000;
+}
+
+a {
+	text-decoration: none;
+	color:#ff5700;
+}
+
+a:hover{
+	color:#000;
 }
 
 ol, ul {
@@ -100,13 +110,12 @@ img {
   width: 25%;
 }
 
-
 .intro{
 	margin-bottom: 2rem;
 }
 
 .intro h1{
-	font-family: ch-heavy;
+	font-family: ch-display;
 	font-size: 3.6rem;
 	text-transform: uppercase;
 	margin-bottom: 2rem;
@@ -118,6 +127,7 @@ img {
 
 h1 {
 	font-family: ch-semibold;
+	text-transform: uppercase;
 }
 
 h2 {
@@ -143,6 +153,12 @@ ul.tags li:last-child {
 }
 ul.tags li:after { content: ", "; }
 ul.tags li:last-child:after { content: ""; }
+
+@font-face {
+  font-family: 'ch-display';
+  src: url('font/CooperHewitt-Display.woff') format('woff');
+}
+
 
 @font-face {
   font-family: 'ch-heavy';

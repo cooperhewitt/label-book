@@ -12,10 +12,11 @@ $(document).ready( function() {
 
 for(var call=1; call<3; call++){
 
-var ch="https://api.collection.cooperhewitt.org/rest/?method=cooperhewitt.exhibitions.getObjects&access_token=" + token + "&exhibition_id=68744915&page=" + call +"&per_page=101";
+	var ch="https://api.collection.cooperhewitt.org/rest/?method=cooperhewitt.exhibitions.getObjects&access_token=" + token + "&exhibition_id=68744915&page=" + call + "&per_page=100";
+	
+	$.getJSON(ch, function(result) {
 
-	$.getJSON(ch, function (json) {
-		var item = json.objects;
+		var item = result.objects;
 		console.log(item.length);
 				 
 // 		For loop iterates through the variable 'list', which contain all the objects 
@@ -25,7 +26,7 @@ var ch="https://api.collection.cooperhewitt.org/rest/?method=cooperhewitt.exhibi
 			var images = item[i].images;
 			if (images != false){
 				var imgURL = images[0].n.url;
-				console.log(imgURL);
+// 				console.log(imgURL);
 			} else {
 				var imgURL = "http://uh8yh30l48rpize52xh0q1o6i.wpengine.netdna-cdn.com/wp-content/themes/cooperhewitt/assets/images/placeholder-small.png";
 			}			
@@ -85,17 +86,20 @@ var ch="https://api.collection.cooperhewitt.org/rest/?method=cooperhewitt.exhibi
 				}
 
 // 			TAGS
-/*
-			objId = item[i].id;	
+			objId = item[i].id;
 			var ch_tags="https://api.collection.cooperhewitt.org/rest/?method=cooperhewitt.objects.tags.getTags&access_token=" + token + "&object_id=" + objId + "&page=1&per_page=100";
-			$.getJSON(ch_tags, function (json) {
-				var item_tags = json.tags;
-				console.log(objId);		
-					for (var tt=0; tt<item_tags.length; tt++){
-						var tag_name = item_tags[tt].name;
-					}
-			});// .getjson
-*/
+			
+			$.getJSON(ch_tags, function (result_2) {
+				var item_tags = result_2.tags;
+
+
+
+			
+			});// .getjson tags
+			
+			
+
+
 
 		    var div = document.createElement("div");
 		    	div.className = "object";
@@ -129,11 +133,11 @@ var ch="https://api.collection.cooperhewitt.org/rest/?method=cooperhewitt.exhibi
 				section_1.className = "section";
 			
 			var section_2 = document.createElement("div");
-				section_2.className = "section";
-			
+				section_2.className = "section";			
+/*
 			var section_3 = document.createElement("div");
-				section_3.className = "section";			
-
+				section_3.className = "section";
+*/			
 			var section_4 = document.createElement("div");
 				section_4.className = "section";
 		
@@ -154,7 +158,7 @@ var ch="https://api.collection.cooperhewitt.org/rest/?method=cooperhewitt.exhibi
 		    div.appendChild(div_2_3);
    
 		    document.getElementById("main").appendChild(div);
-			
+				
 		} // for loop to go through objects
 	});// .getjson
 }

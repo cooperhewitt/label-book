@@ -6,21 +6,56 @@ import cooperhewitt.api.client
 import os
 import urllib
 
+
 CH_ACCESS_TOKEN = os.environ['CH_ACCESS_TOKEN']
 
 ## adding flask here ( MJW/20150701 )
-from flask import Flask
+from flask import Flask, request
 app = Flask(__name__)
+
+#
 
 @app.route("/")
 def home():
-	return build_page()
+	print request.url_root
+	api = cooperhewitt.api.client.OAuth2(CH_ACCESS_TOKEN)
 
-def build_page():
+	args = {'page':'1', 'per_page':'100'}
+	rsp4 = api.execute_method('cooperhewitt.exhibitions.getList', args)
+
+	html = ""
+	html += "<html>"
+	html += "<head>"
+	html += "<link rel=\"stylesheet\" type=\"text/css\" href=\"static/theme.css\">" 
+	html += "</head>"
+	html += "<body>"
+	html += "<div class=\"object\">" 
+
+	for ex_item in rsp4['exhibitions']:
+		
+		ex_list_id = ex_item['id']
+		ex_list_title = ex_item['title']
+				
+		html += "<h1><a href = /" + request.url_root + ex_list_id + "\">" +  ex_list_title + "</h1>"
+
+	html += "</div>" 
+	html += "</body>"
+	html += "</html>"
+	
+	return html
+
+
+#
+
+@app.route("/<int:ex_id>")
+def exhibitiion(ex_id):
+	return build_page(ex_id)
+
+def build_page(ex_id):
 
 	api = cooperhewitt.api.client.OAuth2(CH_ACCESS_TOKEN)
 
-	args = {'exhibition_id': '68744915', 'has_images': '1', 'page':'1', 'per_page':'100'}
+	args = {'exhibition_id': ex_id, 'has_images': '1', 'page':'1', 'per_page':'100'}
 	rsp = api.execute_method('cooperhewitt.exhibitions.getObjects', args)
 
 	html = ""
@@ -33,7 +68,7 @@ def build_page():
 
 	# 	INTRO PAGE		
 	# 	retrieving exhibition info through another api	w/ exhibition id		
-	args = {'exhibition_id': '68744915'}
+	args = {'exhibition_id': ex_id}
 	rsp3 = api.execute_method('cooperhewitt.exhibitions.getInfo', args)
 	
 	exhibition = rsp3['exhibition']
@@ -167,4 +202,4 @@ def build_page():
 	
 if __name__ == "__main__":
 	### note: this is setup for a local config. need to add proper settings for heroku ( MJW/20150701 )
-    app.run(host=os.getenv('IP', '0.0.0.0'),port=int(os.getenv('PORT', 8080)))
+    app.run()
