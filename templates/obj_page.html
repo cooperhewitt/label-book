@@ -13,7 +13,7 @@
 			{% if item.images %}
 				<img src="{{item.images[0].n.url}}">		
 			{% else %}
-				<h1>NO IMAGE</h1>
+				<img src="{{ url_for('static', filename = 'placeholder-small.png') }}">
 			{% endif %}	
 			</div>
 			
