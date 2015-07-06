@@ -43,21 +43,24 @@ def build_page(ex_id):
 
 	# 	retrieving exhibition info through another api	w/ exhibition id		
 	args = {'exhibition_id': ex_id}
-	rsp3 = api.execute_method('cooperhewitt.exhibitions.getInfo', args)
+	rsp2 = api.execute_method('cooperhewitt.exhibitions.getInfo', args)
 
+	data = rsp['objects']
 
-	for item in rsp['objects']:
-		obj_id = item['id']
-		# retrieving tags through another api	w/ obj id		
-		args = {'object_id': obj_id, 'page':'1', 'per_page':'100'}
-		rsp2 = api.execute_method('cooperhewitt.objects.tags.getTags', args)
+	i=0
+	for item in data:
 		
-
+		obj_id = item['id']
+		args = {'object_id': obj_id, 'page':'1', 'per_page':'100'}
+		tags = api.execute_method('cooperhewitt.objects.tags.getTags', args)
+		
+		data[i]['tags'] = tags['tags']
+				
+		i = i + 1
+	
 	return render_template('obj_page.html',
-							rsp=rsp,
-							rsp2=rsp2,
-							obj_id=obj_id,
-							rsp3=rsp3)
+							data=data,
+							rsp2=rsp2)
 	
 
 if __name__ == "__main__":

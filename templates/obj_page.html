@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
 		<div class="object intro">
-		<h1>{{rsp3.exhibition.title}}</h1>
-		<p>{{rsp3.exhibition.text}}</p>			
+		<h1>{{rsp2.exhibition.title}}</h1>
+		<p>{{rsp2.exhibition.text}}</p>			
 		</div>
 		
 
-		{% for item in rsp.objects %}
+		{% for item in data %}
 		<div class="object">
 
 			<div class="col-1-3">
@@ -55,10 +55,10 @@
 				</ul>
 			</div>
 			
-			{% if rsp2.tags %}
+			{% if item.tags %}
 			<div class="section">			
 				<ul class="tags">
-					{% for tag in rsp2.tags %}
+					{% for tag in item.tags %}
 						{% if tag.name %}
 							<li>{{tag.name}}</li>
 						{% endif %}
