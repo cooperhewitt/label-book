@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+		<div class="object">
+		{% for ex_item in rsp4.exhibitions %}
+		<h1><a href ="{{request.url_root}}{{ex_item.id}}">{{ex_item.title}}</a></h1>
+		{% endfor %}
+		</div>
+{% endblock %}
