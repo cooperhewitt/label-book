@@ -121,8 +121,10 @@ img {
 	margin-bottom: 2rem;
 }
 
-.intro p{
-	display:none;
+
+/* visually hidden in web */
+.vh {
+	display:none;	
 }
 
 h1 {
@@ -193,7 +195,7 @@ ul.tags li:last-child:after { content: ""; }
 	    line-height: 1.625; /* unit-less line-height */
 	}
 	
-	.intro p {
+	.vh {
 		display: block;
 	}
 		
@@ -206,6 +208,10 @@ ul.tags li:last-child:after { content: ""; }
 	img {
 		filter: grayscale(100%);
 		-webkit-filter: grayscale(100%); filter: grayscale(100%);
+	}
+	
+	.button{
+		display:none;
 	}
 }
 
