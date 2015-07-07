@@ -1,3 +1,4 @@
+-e git+https://github.com/cooperhewitt/py-cooperhewitt-api@ae5b1160eb8e00b2fe3c4200585788474f1b1065#egg=cooperhewitt.api-master
 Flask==0.10.1
 itsdangerous==0.24
 Jinja2==2.7.3
