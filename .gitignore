@@ -7,3 +7,4 @@ secrets.js
 build
 dist
 *.egg-info
+venv
