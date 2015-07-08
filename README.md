@@ -6,7 +6,7 @@ A site to supply Visitor Services at Cooper Hewitt with a booklet of labels for 
 Visitor Services can navigate to a specific exhibition on the homepage, and once on the exhibition page, press Command-P (or File>Print) to print the letter-sized book as a PDF, with one object/label per page followed by an initial cover page.
 ___
 
-## Current Template of Label:
+## Label Template:
 
 + img
 + title
