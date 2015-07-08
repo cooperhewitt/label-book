@@ -6,7 +6,6 @@
 		<h1>{{rsp2.exhibition.title}}</h1>
 		<p class="vh">{{rsp2.exhibition.text}}</p>			
 		</div>
-		
 
 		{% for item in data %}
 		<div class="object">
@@ -17,11 +16,7 @@
 			{% else %}
 				<img src="{{ url_for('static', filename = 'placeholder-small.png') }}">
 			{% endif %}	
-			</div>
-			
-			
-			<div class="col-2-3">
-			
+			</div><div class="col-2-3">
 			<div class="section">
 			{% if item.title_raw %}
 				<h1>{{item.title_raw}}</h1>
@@ -33,7 +28,6 @@
 				<h2>{{item.date}}</h2>
 			{% endif %}					
 			</div>
-
 			<div class="section">
 				<ul class="info">				
 				{% if item.participants %}
@@ -68,15 +62,12 @@
 				</ul>
 			</div>
 			{% endif %}
-			
 			{% if item.label_text %}
 			<div class="section">
 				<p>{{item.label_text}}</p>
 			</div>
 			{% endif %}
-
-			</div>			
-
+			</div>
 		</div>
 		{% endfor %}
 		
