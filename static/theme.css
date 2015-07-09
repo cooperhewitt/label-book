@@ -205,12 +205,7 @@ ul.tags li:last-child:after { content: ""; }
 		margin: 0px auto;
 		page-break-after: always;
 	}
-			
-	img {
-		filter: grayscale(100%);
-		-webkit-filter: grayscale(100%); filter: grayscale(100%);
-	}
-	
+		
 	.button{
 		display:none;
 	}
