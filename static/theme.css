@@ -76,6 +76,10 @@ ol, ul {
 	margin-top: 2rem;
 }
 
+.button{
+	margin-bottom: 2rem;
+}
+
 img {
 	width:100%;
 	border-top: none;
@@ -118,6 +122,7 @@ img {
 .intro h1{
 	font-family: ch-display;
 	font-size: 3.6rem;
+	line-height: 1.15;
 	text-transform: uppercase;
 	margin-bottom: 2rem;
 }
@@ -148,7 +153,7 @@ ul.info li{
 ul.tags li {
 	font-family: ch-bookitalic;
 	display: inline-block;
-	margin-right:.5rem;
+	margin-right:0.2 rem;
 }
 
 ul.tags li:last-child {
@@ -246,10 +251,12 @@ and (max-device-width : 568px) {
 }
 	
 .intro h1{
-	font-family: ch-semibold;
+	
+	margin-bottom: 2rem;;
+}
+
+.intro h2{
 	font-size: 1.6rem;
-	text-transform: uppercase;
-	margin-bottom: 0;
 }
 
 [class*='col-'] {
