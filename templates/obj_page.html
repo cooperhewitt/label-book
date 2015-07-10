@@ -8,11 +8,11 @@
 		</div>
 
 		{% for item in data %}
-		<div class="object">
+		<div class="object label">
 
 			<div class="col-1-3">
 			{% if item.images %}
-				<img src="{{item.images[0].n.url}}">		
+				<img src="{{item.images[0].z.url}}">		
 			{% else %}
 				<img src="{{ url_for('static', filename = 'placeholder-small.png') }}">
 			{% endif %}	
@@ -69,6 +69,9 @@
 			{% endif %}
 			</div>
 		</div>
+		
+		
+		<footer>OBJECT URL</footer>
 		{% endfor %}
 		
 {% endblock %}

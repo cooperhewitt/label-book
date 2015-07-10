@@ -43,7 +43,7 @@ html {
 
 body {
 	font-size: 1.6rem;
-    line-height: 1.625; /* unit-less line-height */
+    line-height: 1.5; /* unit-less line-height */
     color:#000;
 }
 
@@ -138,6 +138,12 @@ h1 {
 	text-transform: uppercase;
 }
 
+.label h1 {
+	font-family: ch-semibold;
+	text-transform: none;
+}
+
+
 h2 {
 	font-family: ch-semibold;
 }
@@ -198,7 +204,8 @@ ul.tags li:last-child:after { content: ""; }
 	
 	body {
 		font-size: 2.2rem;
-	    line-height: 1.625; /* unit-less line-height */
+		line-height: 1.5; /* unit-less line-height */
+		margin:2rem;
 	}
 	
 	.vh {
