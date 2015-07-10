@@ -47,16 +47,14 @@ def build_page(ex_id):
 
 	data = rsp['objects']
 
-	i=0
 	for item in data:
 		
 		obj_id = item['id']
 		args = {'object_id': obj_id, 'page':'1', 'per_page':'100'}
 		tags = api.execute_method('cooperhewitt.objects.tags.getTags', args)
 		
-		data[i]['tags'] = tags['tags']
+		item['tags'] = tags['tags']
 				
-		i = i + 1
 	
 	return render_template('obj_page.html',
 							data=data,
@@ -64,5 +62,4 @@ def build_page(ex_id):
 	
 
 if __name__ == "__main__":
-	### note: this is setup for a local config. need to add proper settings for heroku ( MJW/20150701 )
-    app.run()
+	app.run()
