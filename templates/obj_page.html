@@ -1,18 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
 
-		<div class="object intro">
+		<div class="content intro">
 			<header class="vh">
 				<h3>{{rsp2.exhibition.title}}</h3>
 				<h3>{{rsp2.exhibition.url}}</h3>
 			</header>
-			<h2 class="button"><a href="/">← Back to Exhibitions</a></h2>
-			<h1><a href="{{rsp2.exhibition.url}}">{{rsp2.exhibition.title}}</a></h1>
+			<a href="/" class="button">← Back to Exhibitions</a>
+			<h1 class="title"><a href="{{rsp2.exhibition.url}}">{{rsp2.exhibition.title}}</a></h1>
 			<p class="vh">{{rsp2.exhibition.text}}</p>
 		</div>
 
 		{% for item in data %}
-		<div class="object label">
+		<div class="content label">
 			<header class="vh">
 				<h3>{{rsp2.exhibition.title}}</h3>
 				<h3>{{item.url}}</h3>
@@ -23,6 +23,11 @@
 			{% else %}
 				<img src="{{ url_for('static', filename = 'placeholder-small.png') }}">
 			{% endif %}
+			
+			{% if item.locationinfo.on_display == '1' %}			
+				<h3>{{item.locationinfo.location}}</h3>						
+			{% endif %}
+
 			</div><div class="col-2-3">
 				<div class="section">
 				{% if item.title_raw %}

@@ -45,6 +45,7 @@ body {
 	font-size: 1.6rem;
     line-height: 1.5; /* unit-less line-height */
     color:#000;
+    margin-top:4rem;
 }
 
 
@@ -62,13 +63,13 @@ ol, ul {
 	list-style: none;
 }
 
-.object {
+.content {
 	width:80%;
 	margin: 0rem auto 2rem auto;
 }
 
-/* clearfix for object */
-.object:after {
+/* clearfix for content */
+.content:after {
   content: "";
   display: table;
   clear: both;
@@ -114,7 +115,7 @@ img {
   width: 25%;
 }
 
-.intro h1{
+h1.title{
 	font-family: ch-display;
 	font-size: 3.6rem;
 	line-height: 1.15;
@@ -138,9 +139,16 @@ h1 {
 	text-transform: none;
 }
 
+.button {
+	font-family: ch-semibold;
+}
 
 h2 {
 	font-family: ch-semibold;
+}
+
+h3 {
+	font-family: ch-book;
 }
 
 header {
@@ -218,7 +226,7 @@ ul.tags li:last-child:after { content: ""; }
 		
 		a {color:#000; text-decoration:none;}
 			
-		.object {
+		.content {
 		width:100%;
 		margin: 0rem auto;
 		page-break-after: always;
@@ -227,6 +235,7 @@ ul.tags li:last-child:after { content: ""; }
 		.button{
 		display:none;
 		}
+		
 }
 
 
@@ -263,11 +272,11 @@ and (max-device-width : 568px) {
 	margin-bottom: 0;
 }
 	
-.intro h1{
+h1.title{
 	margin-bottom: 2rem;;
 }
 
-.intro h2{
+.button{
 	font-size: 1.6rem;
 }
 
