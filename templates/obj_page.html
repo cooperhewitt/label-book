@@ -2,71 +2,77 @@
 {% block content %}
 
 		<div class="object intro">
-		<h2 class="button"><a href="/">← Back to Exhibitions</a></h2>
-		<h1>{{rsp2.exhibition.title}}</h1>
-		<p class="vh">{{rsp2.exhibition.text}}</p>			
+			<header class="vh">
+				<h3>{{rsp2.exhibition.title}}</h3>
+				<h3>{{rsp2.exhibition.url}}</h3>
+			</header>
+			<h2 class="button"><a href="/">← Back to Exhibitions</a></h2>
+			<h1><a href="{{rsp2.exhibition.url}}">{{rsp2.exhibition.title}}</a></h1>
+			<p class="vh">{{rsp2.exhibition.text}}</p>
 		</div>
 
 		{% for item in data %}
 		<div class="object label">
-
+			<header class="vh">
+				<h3>{{rsp2.exhibition.title}}</h3>
+				<h3>{{item.url}}</h3>
+			</header>
 			<div class="col-1-3">
 			{% if item.images %}
 				<img src="{{item.images[0].z.url}}">		
 			{% else %}
 				<img src="{{ url_for('static', filename = 'placeholder-small.png') }}">
-			{% endif %}	
+			{% endif %}
 			</div><div class="col-2-3">
-			<div class="section">
-			{% if item.title_raw %}
-				<h1>{{item.title_raw}}</h1>
-			{% else %}	
-				<h1>{{item.title}}</h1>
-			{% endif %}	
-							
-			{% if item.date %}
-				<h2>{{item.date}}</h2>
-			{% endif %}					
-			</div>
-			<div class="section">
-				<ul class="info">				
-				{% if item.participants %}
-					{% for item2 in item.participants %}
-						{% if item2.role_name == 'Designer' %}
-							<li>Designed by {{item2.person_name}}</li>
-						{% endif %}
-						{% if item2.role_name == 'Manufacturer' %}
-							<li>Manufactured by {{item2.person_name}}</li>
-						{% endif %}
-					{% endfor %}
+				<div class="section">
+				{% if item.title_raw %}
+					<h1><a href="{{item.url}}">{{item.title_raw}}</a></h1>
+				{% else %}	
+					<h1><a href="{{item.url}}">{{item.title}}</a></h1>
 				{% endif %}	
-
-				{% if item.medium %}
-					<li>{{item.medium}}</li>
+				{% if item.date %}
+					<h2>{{item.date}}</h2>
 				{% endif %}					
+				</div>
+				<div class="section">
+					<ul class="info">				
+					{% if item.participants %}
+						{% for item2 in item.participants %}
+							{% if item2.role_name == 'Designer' %}
+								<li>Designed by {{item2.person_name}}</li>
+							{% endif %}
+							{% if item2.role_name == 'Manufacturer' %}
+								<li>Manufactured by {{item2.person_name}}</li>
+							{% endif %}
+						{% endfor %}
+					{% endif %}	
+	
+					{% if item.medium %}
+						<li>{{item.medium}}</li>
+					{% endif %}					
+					
+					{% if item.creditline %}
+						<li>{{item.creditline}}</li>
+					{% endif %}
+					</ul>
+				</div>
 				
-				{% if item.creditline %}
-					<li>{{item.creditline}}</li>
+				{% if item.tags %}
+				<div class="section">			
+					<ul class="tags">
+						{% for tag in item.tags %}
+							{% if tag.name %}
+								<li>{{tag.name}}</li>
+							{% endif %}
+						{% endfor %}
+					</ul>
+				</div>
 				{% endif %}
-				</ul>
-			</div>
-			
-			{% if item.tags %}
-			<div class="section">			
-				<ul class="tags">
-					{% for tag in item.tags %}
-						{% if tag.name %}
-							<li>{{tag.name}}</li>
-						{% endif %}
-					{% endfor %}
-				</ul>
-			</div>
-			{% endif %}
-			{% if item.label_text %}
-			<div class="section">
-				<p>{{item.label_text}}</p>
-			</div>
-			{% endif %}
+				{% if item.label_text %}
+				<div class="section">
+					<p>{{item.label_text}}</p>
+				</div>
+				{% endif %}
 			</div>
 		</div>
 		

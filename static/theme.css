@@ -47,6 +47,8 @@ body {
     color:#000;
 }
 
+
+
 a {
 	text-decoration: none;
 	color:#ff5700;
@@ -62,7 +64,7 @@ ol, ul {
 
 .object {
 	width:80%;
-	margin: 0 auto 2rem auto;
+	margin: 0rem auto 2rem auto;
 }
 
 /* clearfix for object */
@@ -72,12 +74,9 @@ ol, ul {
   clear: both;
 }
 
-.object:first-child{
-	margin-top: 2rem;
-}
-
 .button{
-	margin-bottom: 2rem;
+	margin: 2rem 0;
+	
 }
 
 img {
@@ -115,10 +114,6 @@ img {
   width: 25%;
 }
 
-.intro{
-	margin-bottom: 2rem;
-}
-
 .intro h1{
 	font-family: ch-display;
 	font-size: 3.6rem;
@@ -148,8 +143,13 @@ h2 {
 	font-family: ch-semibold;
 }
 
+header {
+	margin-bottom: 2rem;
+}
+
 p {
-	font-family: ch-book;	
+	font-family: ch-book;
+	margin-bottom: 2rem;	
 }
 
 ul.info li{
@@ -162,9 +162,7 @@ ul.tags li {
 	margin-right:0.2 rem;
 }
 
-ul.tags li:last-child {
-	margin-right:0;	
-}
+ul.tags li:last-child {margin-right:0;}
 ul.tags li:after { content: ", "; }
 ul.tags li:last-child:after { content: ""; }
 
@@ -201,26 +199,34 @@ ul.tags li:last-child:after { content: ""; }
 
 
 @media print {
-	
-	body {
+
+		body {
 		font-size: 2.2rem;
 		line-height: 1.5; /* unit-less line-height */
-		margin:2rem;
-	}
-	
-	.vh {
-		display: block;
-	}
-			
-	.object {
-		width:100%;
-		margin: 0px auto;
-		page-break-after: always;
-	}
+		margin: 0rem 2rem;
+		}
 		
-	.button{
+		h3 {
+		font-family: ch-book;
+		font-size: 1.4rem;
+		line-height: 1.5; /* unit-less line-height */		
+		}
+		
+		.vh {
+		display: block;
+		}
+		
+		a {color:#000; text-decoration:none;}
+			
+		.object {
+		width:100%;
+		margin: 0rem auto;
+		page-break-after: always;
+		}
+		
+		.button{
 		display:none;
-	}
+		}
 }
 
 
@@ -258,7 +264,6 @@ and (max-device-width : 568px) {
 }
 	
 .intro h1{
-	
 	margin-bottom: 2rem;;
 }
 

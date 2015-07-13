@@ -46,7 +46,6 @@ def build_page(ex_id):
 	rsp2 = api.execute_method('cooperhewitt.exhibitions.getInfo', args)
 
 	data = rsp['objects']
-
 	for item in data:
 		
 		obj_id = item['id']
