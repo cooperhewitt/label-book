@@ -41,7 +41,7 @@ def build_page(ex_id):
 	rsp2 = api.execute_method('cooperhewitt.exhibitions.getInfo', args)
 
 	
-	args = {'exhibition_id': ex_id, 'has_images': '1', 'page':'1', 'per_page':'100'}
+	args = {'on_display': '1', 'exhibition_id': ex_id, 'has_images': '1', 'page':'1', 'per_page':'100'}
 	rsp = api.execute_method('cooperhewitt.exhibitions.getObjects', args)
 
 	data = rsp['objects']
