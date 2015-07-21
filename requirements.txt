@@ -1,4 +1,4 @@
--e git+https://github.com/cooperhewitt/py-cooperhewitt-api@ae5b1160eb8e00b2fe3c4200585788474f1b1065#egg=cooperhewitt.api-master
+-e git+https://github.com/cooperhewitt/py-cooperhewitt-api-multiclient@31f54e694e83d9ce8706f514d5d9b72e0744ee85#egg=cooperhewitt.api-multiclient-master
 Flask==0.10.1
 gunicorn==19.3.0
 itsdangerous==0.24
