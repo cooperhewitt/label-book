@@ -13,16 +13,17 @@ import cooperhewitt.api.client
 
 CH_ACCESS_TOKEN = os.environ['CH_ACCESS_TOKEN']
 
+
 def get_object_data(obj_id):
 	api = cooperhewitt.api.client.OAuth2(CH_ACCESS_TOKEN)
 
 	args = {'id': obj_id}
 	rsp = api.execute_method('cooperhewitt.objects.getInfo', args)
 
-	print rsp
-
 	data = rsp['object']
+
 	return data
+
 
 def harvest_exhbition_data(ex_id):
 	api = cooperhewitt.api.client.OAuth2(CH_ACCESS_TOKEN)
@@ -62,3 +63,6 @@ if __name__ == "__main__":
 
     yml = yaml.safe_dump(data)
     print yml
+        
+    target = open('2015-07-22.md', 'w+')
+    target.write(yml)
