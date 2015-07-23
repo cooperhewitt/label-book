@@ -31,12 +31,12 @@
 			</div><div class="col-2-3">
 				<div class="section">
 				{% if item.title_raw %}
-					<h1><a href="{{item.url}}">{{item.title_raw}}</a></h1>
+					<h1 contenteditable="true"><a href="{{item.url}}">{{item.title_raw}}</a></h1>
 				{% else %}	
-					<h1><a href="{{item.url}}">{{item.title}}</a></h1>
+					<h1 contenteditable="true"><a href="{{item.url}}">{{item.title}}</a></h1>
 				{% endif %}	
 				{% if item.date %}
-					<h2>{{item.date}}</h2>
+					<h2 contenteditable="true">{{item.date}}</h2>
 				{% endif %}					
 				</div>
 				<div class="section">
@@ -44,27 +44,27 @@
 					{% if item.participants %}
 						{% for item2 in item.participants %}
 							{% if item2.role_name == 'Designer' %}
-								<li>Designed by {{item2.person_name}}</li>
+								<li contenteditable="true">Designed by {{item2.person_name}}</li>
 							{% endif %}
 							{% if item2.role_name == 'Manufacturer' %}
-								<li>Manufactured by {{item2.person_name}}</li>
+								<li contenteditable="true">Manufactured by {{item2.person_name}}</li>
 							{% endif %}
 						{% endfor %}
 					{% endif %}	
 	
 					{% if item.medium %}
-						<li>{{item.medium}}</li>
+						<li contenteditable="true">{{item.medium}}</li>
 					{% endif %}					
 					
 					{% if item.creditline %}
-						<li>{{item.creditline}}</li>
+						<li contenteditable="true">{{item.creditline}}</li>
 					{% endif %}
 					</ul>
 				</div>
 				
 				{% if item.tags %}
 				<div class="section">			
-					<ul class="tags">
+					<ul class="tags" contenteditable="true">
 						{% for tag in item.tags %}
 							{% if tag.name %}
 								<li>{{tag.name}}</li>
@@ -75,7 +75,7 @@
 				{% endif %}
 				{% if item.label_text %}
 				<div class="section">
-					<p>{{item.label_text}}</p>
+					<p contenteditable="true">{{item.label_text}}</p>
 				</div>
 				{% endif %}
 			</div>
