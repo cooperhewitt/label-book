@@ -21,9 +21,14 @@ def get_object_data(obj_id):
 	rsp = api.execute_method('cooperhewitt.objects.getInfo', args)
 
 	data = rsp['object']
-
-	return data
-
+	#j = json.loads(data)
+	
+	out = {}
+	out['title'] = data['title']
+	
+	#output = json.dumps(out)
+	
+	return rsp
 
 def harvest_exhbition_data(ex_id):
 	api = cooperhewitt.api.client.OAuth2(CH_ACCESS_TOKEN)
@@ -57,12 +62,16 @@ if __name__ == "__main__":
     parser.add_argument('-e', '--exhibition', dest='exhibition', action='store', help='An exhbition id.')
     parser.add_argument('-o', '--object', dest='object', action='store', help='An object id.')
     args = parser.parse_args()
-
+    
     if (args.object):
-	    data = get_object_data(args.object)
-
-    yml = yaml.safe_dump(data)
+	    output = get_object_data(args.object)
+	
+	    #print output
+# 
+    output = load(output)
+    
+    yml = yaml.safe_dump(output['object']['title'])
     print yml
-        
-    target = open('2015-07-22.md', 'w+')
-    target.write(yml)
+#    	     
+#     target = open('2015-07-22.md', 'w+')
+#     target.write(yml)
