@@ -1,0 +1,11 @@
+Metadata-Version: 1.1
+Name: cooperhewitt.label.book
+Version: 0.14
+Summary: Use the Cooper Hewitt API to generate a printable "book" for any exhibition
+Home-page: https://github.com/cooperhewitt/label-book
+Author: Cooper Hewitt, Smithsonian Design Museum
+Author-email: UNKNOWN
+License: BSD
+Download-URL: https://github.com/cooperhewitt/label-book/releases
+Description: UNKNOWN
+Platform: UNKNOWN

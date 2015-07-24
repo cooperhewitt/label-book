@@ -1,0 +1,1 @@
+https://github.com/cooperhewitt/py-cooperhewitt-api/tarball/master#egg=cooperhewitt.api-0.4

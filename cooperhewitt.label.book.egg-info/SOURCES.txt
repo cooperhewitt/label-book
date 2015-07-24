@@ -1,0 +1,7 @@
+setup.py
+cooperhewitt.label.book.egg-info/PKG-INFO
+cooperhewitt.label.book.egg-info/SOURCES.txt
+cooperhewitt.label.book.egg-info/dependency_links.txt
+cooperhewitt.label.book.egg-info/namespace_packages.txt
+cooperhewitt.label.book.egg-info/requires.txt
+cooperhewitt.label.book.egg-info/top_level.txt
