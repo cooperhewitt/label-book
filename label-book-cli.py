@@ -21,14 +21,49 @@ def get_object_data(obj_id):
 	rsp = api.execute_method('cooperhewitt.objects.getInfo', args)
 
 	data = rsp['object']
-	#j = json.loads(data)
 	
 	out = {}
-	out['title'] = data['title']
 	
-	#output = json.dumps(out)
-	
-	return rsp
+# 	title
+	if data['title_raw']:
+		out['title'] = data['title_raw']
+	else:
+		out['title'] = data['title']
+
+# 	date
+	if data['date']:
+		out['date'] = data['date']
+
+# 	image
+	if data['images']:
+		out['image'] = data['images'][0]['z']['url']
+	else:
+		out['image'] = "No Image"
+
+# 	participants		
+	if data['participants']:
+		for item2 in data['participants']:
+			if item2['role_name'] == 'Designer':
+				out['designer'] = item2['person_name']
+			if item2['role_name'] == 'Manufacturer':
+				out['manufacturer'] = item2['person_name']
+
+# 	medium		
+	if data['medium']:
+		out['medium'] = data['medium']
+		
+# 	creditline
+	if data['creditline']:
+		out['creditline'] = data['creditline']
+
+# 	label_text
+	if data['label_text']:
+		out['label_text'] = data['label_text']
+
+# 	MISSING TAGS
+# 	MISSING LOCATION INFO
+			
+	return out
 
 def harvest_exhbition_data(ex_id):
 	api = cooperhewitt.api.client.OAuth2(CH_ACCESS_TOKEN)
@@ -51,27 +86,23 @@ def harvest_exhbition_data(ex_id):
 
 		item['tags'] = tags['tags']		
 		item['locationinfo'] = locations
-				
-        return data
+
+		return data
 	
 
 if __name__ == "__main__":
 
-    parser = argparse.ArgumentParser(description='Build the exhibiton books.')
-    
-    parser.add_argument('-e', '--exhibition', dest='exhibition', action='store', help='An exhbition id.')
-    parser.add_argument('-o', '--object', dest='object', action='store', help='An object id.')
-    args = parser.parse_args()
-    
-    if (args.object):
-	    output = get_object_data(args.object)
-	
-	    #print output
-# 
-    output = load(output)
-    
-    yml = yaml.safe_dump(output['object']['title'])
-    print yml
-#    	     
-#     target = open('2015-07-22.md', 'w+')
-#     target.write(yml)
+	parser = argparse.ArgumentParser(description='Build the exhibiton books.')
+
+	parser.add_argument('-e', '--exhibition', dest='exhibition', action='store', help='An exhbition id.')
+	parser.add_argument('-o', '--object', dest='object', action='store', help='An object id.')
+	args = parser.parse_args()
+
+	if (args.object):
+		output = get_object_data(args.object)
+
+	yml = yaml.safe_dump(output, default_flow_style=False, explicit_start=True)
+	print yml
+
+	target = open('2015-07-22.md', 'w+')
+	target.write(yml)
