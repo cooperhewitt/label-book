@@ -17,13 +17,13 @@ layout: default
 		<div class="section">
 			<ul class="info">
 				<!--participants/designer-->	
-			    <li>{% if page.designer %}{{ page.designer }}{% endif %}</li>
+			    {% if page.designer %}<li>{{ page.designer }}</li>{% endif %}
 				<!--participants/manufacturer-->	
-			    <li>{% if page.manufacturer %}{{ page.manufacturer }}{% endif %}</li>
+			    {% if page.manufacturer %}<li>{{ page.manufacturer }}</li>{% endif %}
 				<!--medium-->	
-			    <li>{% if page.medium %}{{ page.medium }}{% endif %}</li>
+			    {% if page.medium %}<li>{{ page.medium }}</li>{% endif %}
 				<!--creditline-->
-			    <li>{% if page.creditline %}{{ page.creditline }}{% endif %}</li>
+			    {% if page.creditline %}<li>{{ page.creditline }}</li>{% endif %}
 			</ul>
 		</div>
 		<div class="section">
