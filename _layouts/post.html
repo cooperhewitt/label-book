@@ -3,22 +3,41 @@ layout: default
 ---
 <div class="post">
 
-  <header class="post-header">
-    <h1 class="post-title">{{ page.title }}</h1>
-    <p class="post-meta">
-	    {{ page.date | date: "%b %-d, %Y" }}
-	    {% if page.author %}
-	    	{{ page.author }}
-	    {% endif %}
-	    {% if page.meta %}
-	    	{{ page.meta }}
-	    {% endif %}
-	    {{ page.gallery_text }}
-	</p>
-  </header>
+	<div style="width:33.33%; float:left;">
+		<img src="{{ page.image }}">
+	</div>   
+	<div style="width:66.66%; float:left;">
+			<!--title-->
+		    {% if page.title %}
+		    	{{ page.title }}
+		    {% endif %}
 
-  <article class="post-content">
-    post-content
-  </article>
+			<!--date-->
+		    {% if page.date %}
+		    	{{ page.date }}
+		    {% endif %}
+
+			<!--medium-->	
+		    {% if page.medium %}
+		    	{{ page.medium }}
+		    {% endif %}
+
+			<!--participants-->	
+		    {% if page.designer %}
+		    	{{ page.designer }}
+		    {% endif %}
+
+		    {% if page.manufacturer %}
+		    	{{ page.manufacturer }}
+		    {% endif %}
+
+			<!--creditline-->
+		    {% if page.creditline %}
+		    	{{ page.creditline }}
+		    {% endif %}
+	
+			<!--creditline-->
+		    {{ page.label_text }}
+	</div>
 
 </div>
