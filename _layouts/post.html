@@ -6,38 +6,30 @@ layout: default
 	<div style="width:33.33%; float:left;">
 		<img src="{{ page.image }}">
 	</div>   
-	<div style="width:66.66%; float:left;">
-			<!--title-->
-		    {% if page.title %}
-		    	{{ page.title }}
-		    {% endif %}
-
-			<!--date-->
-		    {% if page.date %}
-		    	{{ page.date }}
-		    {% endif %}
-
-			<!--medium-->	
-		    {% if page.medium %}
-		    	{{ page.medium }}
-		    {% endif %}
-
-			<!--participants-->	
-		    {% if page.designer %}
-		    	{{ page.designer }}
-		    {% endif %}
-
-		    {% if page.manufacturer %}
-		    	{{ page.manufacturer }}
-		    {% endif %}
-
-			<!--creditline-->
-		    {% if page.creditline %}
-		    	{{ page.creditline }}
-		    {% endif %}
 	
+	<div style="width:66.66%; float:left;">
+		<div class="section">	
+			<!--title-->
+		    <h3>{% if page.title %}{{ page.title }}{% endif %}</h3>
+			<!--date-->
+		    <h3>{% if page.date %}{{ page.date }}{% endif %}</h3>
+		</div>
+		<div class="section">
+			<ul class="info">
+				<!--participants/designer-->	
+			    <li>{% if page.designer %}{{ page.designer }}{% endif %}</li>
+				<!--participants/manufacturer-->	
+			    <li>{% if page.manufacturer %}{{ page.manufacturer }}{% endif %}</li>
+				<!--medium-->	
+			    <li>{% if page.medium %}{{ page.medium }}{% endif %}</li>
+				<!--creditline-->
+			    <li>{% if page.creditline %}{{ page.creditline }}{% endif %}</li>
+			</ul>
+		</div>
+		<div class="section">
 			<!--creditline-->
-		    {{ page.label_text }}
+		    <p>{{ page.label_text }}</p>
+		</div>		
 	</div>
 
 </div>
