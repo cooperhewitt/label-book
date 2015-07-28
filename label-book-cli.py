@@ -19,10 +19,12 @@ def get_object_data(obj_id):
 
 	args = {'id': obj_id}
 	rsp = api.execute_method('cooperhewitt.objects.getInfo', args)
-
 	data = rsp['object']
-	
+# 	create new dictionary
 	out = {}
+
+# 	layout
+	out['layout'] = "post"
 	
 # 	title
 	if data['title_raw']:
@@ -59,11 +61,28 @@ def get_object_data(obj_id):
 # 	label_text
 	if data['label_text']:
 		out['label_text'] = data['label_text']
-
-# 	MISSING TAGS
-# 	MISSING LOCATION INFO
 			
+
+	args = {'object_id': obj_id, 'page':'1', 'per_page':'100'}
+	tags = api.execute_method('cooperhewitt.objects.tags.getTags', args)
+	locations = api.execute_method('cooperhewitt.objects.isOnDisplay', args)
+	
+	if locations['on_display'] == '1':
+		loc = locations['location']
+		out['location'] = loc
+
+	tagsarray = []
+	for tag in tags['tags']:
+		tagsarray.append(tag['name'])
+	
+	s = ', '.join(tagsarray)
+	out['tags'] = s
+
 	return out
+
+
+
+
 
 def harvest_exhbition_data(ex_id):
 	api = cooperhewitt.api.client.OAuth2(CH_ACCESS_TOKEN)
@@ -101,8 +120,7 @@ if __name__ == "__main__":
 	if (args.object):
 		output = get_object_data(args.object)
 
-	yml = yaml.safe_dump(output, default_flow_style=False, explicit_start=True)
-	print yml
+	yml = yaml.safe_dump(output, default_flow_style=False, explicit_start=True, explicit_end=True)
 
 	target = open('2015-07-22.md', 'w+')
 	target.write(yml)
