@@ -71,11 +71,20 @@ def get_object_data(obj_id):
 		loc = locations['location']
 		out['location'] = loc
 
+# 	tagsarray = []
+# 	for tag in tags['tags']:
+# 		tagsarray.append("tag_name:" + tag['name'])
+# 	
+# 	out['tags'] = tagsarray
+
 	tagsarray = []
 	for tag in tags['tags']:
-		tagsarray.append("tag_name:" + tag['name'])
-	
+		tagsarray.append(tag['name'])
+		#tag['name'] = "tag_name:" + tag['name']
+		#print tag['name']
+		
 	out['tags'] = tagsarray
+	print out
 
 	return out
 
