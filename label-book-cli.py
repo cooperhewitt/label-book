@@ -73,7 +73,7 @@ def get_object_data(obj_id):
 
 	tagsarray = []
 	for tag in tags['tags']:
-		tagsarray.append("tag_name: " + tag['name'])
+		tagsarray.append("tag_name:" + tag['name'])
 	
 	out['tags'] = tagsarray
 
