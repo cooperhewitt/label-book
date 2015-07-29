@@ -32,9 +32,9 @@ layout: default
 		{% if page.tags %}
 		<div class="section">
 			<!--tags-->
-		    <ul class="tags">
-			   <li>{{ page.tags }}</li>
-		    </ul>
+		    <ul class="tags">{% for tag in page.tags %}
+			   <li>{{ tag.tags }}</li>
+		    {% endfor %}</ul>
 		</div>		
 		{% endif %}
 
