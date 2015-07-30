@@ -1,50 +1,66 @@
 ---
 layout: default
 ---
-<div class="post">
+<!-- page-content -->
+<!-- wrapper -->
 
-	<div style="width:33.33%; float:left;">
+<div class="content intro">
+	<header class="vh">
+		<h3>Exhibition Title</h3>
+		<h3>www.exhibitionurl.com</h3>
+	</header>
+	<a href="{{ site.baseurl }}/" class="button">← Back to Exhibitions</a>
+	<h1 class="title"><a href="{{rsp2.exhibition.url}}">Exhibition Title</a></h1>
+	<p class="vh">Exhibition Text Lorem Ipsum</p>
+</div>
+
+<div class="content label">
+	<header class="vh">
+		<h3>Exhibition Title</h3>
+		<h3>www.exhibitionurl.com</h3>
+	</header>	
+	<div class="col-1-3">
+		{% if page.title %}
 		<img src="{{ page.image }}">
-	</div>   
-	
-	<div style="width:66.66%; float:left;">
-		
-		<div class="section">	
-			<!--title-->
-		    <h3>{% if page.title %}{{ page.title }}{% endif %}</h3>
-			<!--date-->
-		    <h3>{% if page.date %}{{ page.date }}{% endif %}</h3>
-		</div>
-		
-		<div class="section">
-			<ul class="info">
-				<!--participants/designer-->	
-			    {% if page.designer %}<li>{{ page.designer }}</li>{% endif %}
-				<!--participants/manufacturer-->	
-			    {% if page.manufacturer %}<li>{{ page.manufacturer }}</li>{% endif %}
-				<!--medium-->	
-			    {% if page.medium %}<li>{{ page.medium }}</li>{% endif %}
-				<!--creditline-->
-			    {% if page.creditline %}<li>{{ page.creditline }}</li>{% endif %}
-			</ul>
-		</div>
-
-		{% if page.tags %}
-		<div class="section">
-			<!--tags-->
-		    <ul class="tags">{% for tag in page.tags %}
-			   <li>{{ tag }}</li>
-		    {% endfor %}</ul>
-		</div>		
+		{% else %}
+		<h3>NO IMAGE</h3>
 		{% endif %}
-
-		{% if page.label_text %}		
-		<div class="section">
-			<!--label_text-->
-		    <p>{{ page.label_text }}</p>
-		</div>		
-		{% endif %}
-		
+		<h3>Location Info.</h3>
+	</div><div class="col-2-3">
+	<div class="section">	
+		<!--title-->
+	    <h2>{% if page.title %}{{ page.title }}{% endif %}</h2>
+		<!--date-->
+	    <h2>{% if page.date %}{{ page.date | date: "%b %-d, %Y" }}{% endif %}</h2>
 	</div>
+	<div class="section">
+		<ul class="info">
+			<!--participants/designer-->	
+		    {% if page.designer %}<li>{{ page.designer }}</li>{% endif %}
+			<!--participants/manufacturer-->	
+		    {% if page.manufacturer %}<li>{{ page.manufacturer }}</li>{% endif %}
+			<!--medium-->	
+		    {% if page.medium %}<li>{{ page.medium }}</li>{% endif %}
+			<!--creditline-->
+		    {% if page.creditline %}<li>{{ page.creditline }}</li>{% endif %}
+		</ul>
+	</div>
+	{% if page.tags %}
+	<div class="section">
+		<!--tags-->
+	    <ul class="tags">
+		   {% for tag in page.tags %}
+		   <li>{{ tag }}</li>
+		   {% endfor %}
+		</ul>
+	</div>		
+	{% endif %}
 
+	{% if page.label_text %}		
+	<div class="section">
+		<!--label_text-->
+	    <p>{{ page.label_text }}</p>
+	</div>		
+	{% endif %}
+</div>
 </div>

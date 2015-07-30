@@ -8,6 +8,11 @@ dl, dd, ol, ul, figure {
     padding: 0;
 }
 
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
 
 
 /**
@@ -26,15 +31,37 @@ body {
 
 
 /**
- * Set `margin-bottom` to maintain vertical rhythm
+ * Wrapper
  */
-h1, h2, h3, h4, h5, h6,
-p, blockquote, pre,
-ul, ol, dl, figure,
-%vertical-rhythm {
-    margin-bottom: $spacing-unit / 2;
+.wrapper {
+    max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit} * 2));
+    max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: $spacing-unit;
+    padding-left: $spacing-unit;
+    @extend %clearfix;
+
+    @include media-query($on-laptop) {
+        max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit}));
+        max-width:         calc(#{$content-width} - (#{$spacing-unit}));
+        padding-right: $spacing-unit / 2;
+        padding-left: $spacing-unit / 2;
+    }
 }
 
+
+/**
+ * Clearfix
+ */
+%clearfix {
+
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
 
 
 /**
@@ -46,27 +73,11 @@ img {
 }
 
 
-
-/**
- * Figures
- */
-/*
-figure > img {
-    display: block;
-}
-
-figcaption {
-    font-size: $small-font-size;
-}
-*/
-
-
-
 /**
  * Lists
  */
 ul, ol {
-    margin-left: $spacing-unit;
+    list-style: none;
 }
 
 li {
@@ -82,7 +93,7 @@ li {
  * Headings
  */
 h1, h2, h3, h4, h5, h6 {
-    font-weight: 300;
+//     font-weight: 300;
 }
 
 
@@ -104,6 +115,61 @@ a {
     }
 }
 
+
+/**
+ * Font-Face
+ */
+
+@font-face {
+  font-family: 'ch-display';
+  src: url('font/CooperHewitt-Display.woff') format('woff');
+}
+
+
+@font-face {
+  font-family: 'ch-heavy';
+  src: url('font/CooperHewitt-Heavy.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'ch-semibold';
+  src: url('font/CooperHewitt-Semibold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'ch-medium';
+  src: url('font/CooperHewitt-Medium.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'ch-book';
+  src: url('font/CooperHewitt-Book.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'ch-bookitalic';
+  src: url('font/CooperHewitt-BookItalic.woff') format('woff');
+}
+
+
+
+
+
+
+
+
+/**
+ * Figures
+ */
+/*
+figure > img {
+    display: block;
+}
+
+figcaption {
+    font-size: $small-font-size;
+}
+*/
 
 
 /**
@@ -153,39 +219,3 @@ pre {
     }
 }
 */
-
-
-
-/**
- * Wrapper
- */
-.wrapper {
-    max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit} * 2));
-    max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));
-    margin-right: auto;
-    margin-left: auto;
-    padding-right: $spacing-unit;
-    padding-left: $spacing-unit;
-    @extend %clearfix;
-
-    @include media-query($on-laptop) {
-        max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit}));
-        max-width:         calc(#{$content-width} - (#{$spacing-unit}));
-        padding-right: $spacing-unit / 2;
-        padding-left: $spacing-unit / 2;
-    }
-}
-
-
-
-/**
- * Clearfix
- */
-%clearfix {
-
-    &:after {
-        content: "";
-        display: table;
-        clear: both;
-    }
-}
