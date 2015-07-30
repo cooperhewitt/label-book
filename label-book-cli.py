@@ -34,7 +34,7 @@ def get_object_data(obj_id):
 
 # 	date
 	if data['date']:
-		out['date'] = data['date']
+		out['display_date'] = data['date']
 
 # 	image
 	if data['images']:
